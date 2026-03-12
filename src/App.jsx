@@ -22,6 +22,11 @@ import {
   FingerPrintIcon,
   DevicePhoneMobileIcon,
   CodeBracketIcon,
+  UserGroupIcon,        // added for Who It Serves
+  AcademicCapIcon,       // added for Use Cases
+  PresentationChartBarIcon,
+  ShareIcon,
+  HomeModernIcon,
 } from "@heroicons/react/24/outline";
 
 // ---------- Background Video (abstract medical/tech) ----------
@@ -114,18 +119,19 @@ export default function App() {
       {/* ---------- Navbar ---------- */}
       <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-        <img
-          src="https://res.cloudinary.com/dvcmopd4q/image/upload/v1773158219/d83cbb18-2d41-4d79-8e2a-4d5ef303e442_dpd91v.png"
-          alt="BioChainVault Logo"
-          className="w-30 h-14 object-contain"
-        />
-        {/* <span className="font-bold text-[#0f2b4b]">BioChainVault</span> */}
-      </div>
+          <div className="flex items-center gap-2">
+            <img
+              src="https://res.cloudinary.com/dvcmopd4q/image/upload/v1773158219/d83cbb18-2d41-4d79-8e2a-4d5ef303e442_dpd91v.png"
+              alt="BioChainVault Logo"
+              className="w-30 h-14 object-contain"
+            />
+          </div>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
             <button onClick={() => scrollTo("overview")} className="text-sm font-medium text-slate-700 hover:text-[#64bc9f]">Overview</button>
+            <button onClick={() => scrollTo("who")} className="text-sm font-medium text-slate-700 hover:text-[#64bc9f]">Who</button>
+            <button onClick={() => scrollTo("use-cases")} className="text-sm font-medium text-slate-700 hover:text-[#64bc9f]">Use Cases</button>
             <button onClick={() => scrollTo("components")} className="text-sm font-medium text-slate-700 hover:text-[#64bc9f]">Components</button>
             <button onClick={() => scrollTo("privacy")} className="text-sm font-medium text-slate-700 hover:text-[#64bc9f]">Privacy</button>
             <button onClick={() => scrollTo("governance")} className="text-sm font-medium text-slate-700 hover:text-[#64bc9f]">Governance</button>
@@ -152,6 +158,8 @@ export default function App() {
       <Modal isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} title="Menu">
         <div className="flex flex-col gap-4">
           <button onClick={() => scrollTo("overview")} className="text-left py-2 text-slate-700 hover:text-[#64bc9f]">Overview</button>
+          <button onClick={() => scrollTo("who")} className="text-left py-2 text-slate-700 hover:text-[#64bc9f]">Who</button>
+          <button onClick={() => scrollTo("use-cases")} className="text-left py-2 text-slate-700 hover:text-[#64bc9f]">Use Cases</button>
           <button onClick={() => scrollTo("components")} className="text-left py-2 text-slate-700 hover:text-[#64bc9f]">Components</button>
           <button onClick={() => scrollTo("privacy")} className="text-left py-2 text-slate-700 hover:text-[#64bc9f]">Privacy</button>
           <button onClick={() => scrollTo("governance")} className="text-left py-2 text-slate-700 hover:text-[#64bc9f]">Governance</button>
@@ -189,63 +197,171 @@ export default function App() {
 
       {/* ---------- Hero with Video ---------- */}
       <section id="overview" className="relative h-screen flex items-center justify-center overflow-hidden">
-  <video
-    ref={videoRef}
-    autoPlay
-    muted
-    loop
-    playsInline
-    className="absolute inset-0 w-full h-full object-cover"
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={BG_VIDEO} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0f2b4b]/80 via-[#0f2b4b]/60 to-[#0f2b4b]/90" />
+
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+          <img
+            src="https://res.cloudinary.com/dvcmopd4q/image/upload/v1773158219/d83cbb18-2d41-4d79-8e2a-4d5ef303e442_dpd91v.png"
+            alt="BioChainVault Logo"
+            className="h-32 bg-white/20 object-contain rounded-2xl border mb-20 border-white/10 shadow-[0_10px_40px_rgba(100,188,159,0.35)] w-auto mx-auto"
+          />
+
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+          >
+            Enable secure, compliant healthcare data collaboration — without moving data.
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto"
+          >
+            BioChainVault provides hospitals, labs, and research institutions with a governance layer for consent‑aware data sharing, privacy‑preserving analytics, and audit‑ready transparency — all deployed inside your infrastructure.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <button
+              onClick={() => window.open('https://calendly.com/salahzakaria/biochainvault-intro-call', '_blank')}
+              className="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
+            >
+              Request a pilot
+            </button>
+            <button
+              onClick={() => setContactModalOpen(true)}
+              className="px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-lg font-semibold border border-white/30 hover:bg-white/30 transition"
+            >
+              Contact
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ---------- Who It Serves ---------- */}
+{/* ---------- Who It Serves ---------- */}
+<motion.section
+  id="who"
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: true, amount: 0.3 }}
+  variants={stagger}
+  className="py-16 px-4 max-w-7xl mx-auto"
+>
+  <motion.div variants={fadeUp} className="text-center mb-10">
+    <h2 className="text-3xl md:text-4xl font-bold text-[#0f2b4b]">
+      Who It Serves
+    </h2>
+    <p className="text-lg text-slate-600 mt-2">
+      Built for the institutions driving healthcare forward
+    </p>
+  </motion.div>
+
+  <motion.div
+    variants={stagger}
+    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6"
   >
-    <source src={BG_VIDEO} type="video/mp4" />
-  </video>
-  <div className="absolute inset-0 bg-gradient-to-b from-[#0f2b4b]/80 via-[#0f2b4b]/60 to-[#0f2b4b]/90" />
-  
-  <div className="relative z-10 text-center px-4 max-w-4xl mx-auto ">
-    {/* Logo - centered, sized appropriately, with bottom margin */}
-    <img
-      src="https://res.cloudinary.com/dvcmopd4q/image/upload/v1773158219/d83cbb18-2d41-4d79-8e2a-4d5ef303e442_dpd91v.png"
-      alt="BioChainVault Logo"
-      className="h-32 bg-white/20 object-contain rounded-2xl border mb-20 border-white/10 shadow-[0_10px_40px_rgba(100,188,159,0.35)] w-auto mx-auto "
-    />
-    
-    <motion.h1
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
-    >
-      On‑premise governance layer for secure healthcare data access.
-    </motion.h1>
-    <motion.p
-      initial={{ opacity: 0, y: 40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.2, duration: 0.8 }}
-      className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto"
-    >
-      BioChainVault sits inside hospitals, labs, and research centers to enable compliant, consent‑aware data sharing with audit‑ready transparency.
-    </motion.p>
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.4 }}
-      className="flex flex-col sm:flex-row gap-4 justify-center"
-    >
-      <button 
-    onClick={() => window.open('https://calendly.com/salahzakaria/biochainvault-intro-call', '_blank')}
-    className="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
-  >
-    Request a pilot
-  </button>
-      <button
-        onClick={() => setContactModalOpen(true)}
-        className="px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-lg font-semibold border border-white/30 hover:bg-white/30 transition"
+    {[
+      {
+        name: "Hospitals",
+        image:
+          "https://res.cloudinary.com/dvcmopd4q/image/upload/v1773349613/vitalworks-hospital-ward-1338585_1920_hfvtyk.jpg",
+      },
+      {
+        name: "Labs",
+        image:
+          "https://images.unsplash.com/photo-1579165466741-7f35e4755660?auto=format&fit=crop&w=900&q=80",
+      },
+      {
+        name: "Research Institutions",
+        image:
+          "https://images.unsplash.com/photo-1532187643603-ba119ca4109e?auto=format&fit=crop&w=900&q=80",
+      },
+      {
+        name: "Biobanks",
+        image:
+          "https://res.cloudinary.com/dvcmopd4q/image/upload/v1773349613/geralt-data-2899899_1920_ovjrc4.jpg",
+      },
+      {
+        name: "Healthcare Data Partners",
+        image:
+          "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80",
+      },
+    ].map((item) => (
+      <motion.div
+        key={item.name}
+        variants={fadeUp}
+        className="group overflow-hidden rounded-2xl bg-white shadow-md border border-slate-200 hover:shadow-xl transition-all hover:border-[#64bc9f]/50"
       >
-        Contact
-      </button>
-    </motion.div>
-  </div>
-</section>
+        <div className="relative h-52 overflow-hidden">
+          <img
+            src={item.image}
+            alt={item.name}
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0f2b4b]/70 via-[#0f2b4b]/15 to-transparent" />
+        </div>
+
+        <div className="p-5">
+          <h3 className="text-lg font-semibold text-center text-[#0f2b4b]">
+            {item.name}
+          </h3>
+        </div>
+      </motion.div>
+    ))}
+  </motion.div>
+</motion.section>
+      {/* ---------- Use Cases ---------- */}
+      <motion.section
+        id="use-cases"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={stagger}
+        className="py-20 bg-slate-50 px-4"
+      >
+        <div className="max-w-7xl mx-auto">
+          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-[#0f2b4b] mb-12 text-center">
+            Use Cases
+          </motion.h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { icon: LockClosedIcon, title: "Secure Healthcare Data Access", desc: "Enable researchers and clinicians to access only the data they need, with patient consent and full audit trails." },
+              { icon: ShareIcon, title: "Consent‑Aware Research Collaboration", desc: "Share de‑identified datasets with pharma partners while enforcing granular consent and purpose limitations." },
+              { icon: PresentationChartBarIcon, title: "Privacy‑Preserving Analytics", desc: "Run cohort analyses and aggregate queries without exposing raw patient data, using differential privacy." },
+              { icon: DocumentTextIcon, title: "Governed Health Data Sharing", desc: "Securely exchange data across institutions for multi‑center studies, with policy enforcement at every step." },
+              { icon: HomeModernIcon, title: "Sovereign Deployment", desc: "Deploy entirely inside your hospital’s infrastructure — data never leaves your control." },
+            ].map((item, idx) => (
+              <motion.div
+                key={idx}
+                variants={fadeUp}
+                className="p-6 bg-white rounded-xl shadow-md border border-slate-200 hover:shadow-lg transition"
+              >
+                <item.icon className="h-10 w-10 text-[#64bc9f] mb-4" />
+                <h3 className="text-xl font-semibold mb-2 text-[#0f2b4b]">{item.title}</h3>
+                <p className="text-slate-600">{item.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
       {/* ---------- Core Components ---------- */}
       <motion.section
         id="components"
@@ -362,7 +478,7 @@ export default function App() {
       >
         <div className="max-w-7xl mx-auto">
           <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold text-[#0f2b4b] mb-4">
-            Governance Engine 
+            Governance Engine
           </motion.h2>
           <motion.p variants={fadeUp} className="text-lg text-slate-600 mb-8">
             Policy‑as‑code framework with RBAC/ABAC, consent management, and real‑time enforcement.
@@ -383,7 +499,6 @@ export default function App() {
                   <p className="text-slate-600">Patients grant/revoke consent via portal; consents stored as signed JWTs / verifiable credentials. Supports FHIR Consent resource.</p>
                 </div>
               </div>
-             
             </motion.div>
             <motion.div variants={fadeUp} className="space-y-4">
               <div className="flex items-start gap-3">
@@ -459,7 +574,7 @@ export default function App() {
                   "EHR Connectors: Epic, Cerner (FHIR APIs or direct DB)",
                   "Lab System Adapters: HL7 v2.x, ASTM",
                   "Research DBs: SQL, NoSQL, RedCap, i2b2",
-                  "Identity Federation: Active Directory / LDAP"
+                  "Identity Federation: Active Directory / LDAP",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <span className="text-[#64bc9f]">•</span>
@@ -475,7 +590,7 @@ export default function App() {
                   "Containerized (Docker), orchestrated via Kubernetes",
                   "Minimal hardware: 8+ CPU cores, 32+ GB RAM, 500+ GB SSD",
                   "High availability: multiple replicas, DB replication",
-                  "Network: 1 Gbps internal connectivity"
+                  "Network: 1 Gbps internal connectivity",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <span className="text-[#64bc9f]">•</span>
