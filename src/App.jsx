@@ -231,9 +231,12 @@ export default function App() {
       transition={{ delay: 0.4 }}
       className="flex flex-col sm:flex-row gap-4 justify-center"
     >
-      <button className="px-6 py-3 bg-[#64bc9f] text-white rounded-lg font-semibold hover:bg-[#4fa386] transition">
-        Request a pilot
-      </button>
+      <button 
+    onClick={() => window.open('https://calendly.com/salahzakaria/biochainvault-intro-call', '_blank')}
+    className="rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-slate-950 transition hover:bg-slate-200"
+  >
+    Request a pilot
+  </button>
       <button
         onClick={() => setContactModalOpen(true)}
         className="px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-lg font-semibold border border-white/30 hover:bg-white/30 transition"
